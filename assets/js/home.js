@@ -6,5 +6,5 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     splash.style.display = "none";
     content.style.display = "block";
-  }, 500);
+  }, 3000);
 });

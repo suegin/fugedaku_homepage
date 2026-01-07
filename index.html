@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ふゲだく-ホームページ</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="assets/css/home.css">
 </head>
 
 <body>
@@ -12,15 +12,26 @@
     <div id="splash">
         <img src="assets/img/ふゲだくロゴ2.png" alt="Circle Logo" id="splash-logo">
     </div>
-    <div id="content" style="display: none;">
-        <!-- ここに通常のページ内容 -->
-    </div>
+    <div id="content" style="display: none;"></div>
 
     
     <header class="site-header">
-        <video autoplay muted loop width="1905" src="assets/video/20251031_井上.mp4"></video>
+        <video class="header-video"  autoplay muted loop>
+            <source src="assets/video/20251031_井上.mp4" type="video/mp4">
+            お使いのブラウザは動画に対応していません。
+        </video>
+
+        <div class="video-overlay"></div>
+        <img
+            src="assets/img/ふゲだくロゴ2.png"
+            alt="サークルアイコン"
+            class="circle-icon"
+        >
     </header>
 
+    <section class="debug-space">
+        <p>スクロール確認用スペース</p>
+    </section>
 
     <main>
         <section id="about" class="section">
