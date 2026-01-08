@@ -1,10 +1,14 @@
 window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-  const content = document.getElementById("content");
+    const splash = document.getElementById("splash");
+    const content = document.getElementById("content");
+    const splashDuration = 3000;
+    const fadeDuration = 1000;
 
-  // アニメーション時間と合わせる
-  setTimeout(() => {
-    splash.style.display = "none";
-    content.style.display = "block";
-  }, 3000);
+    setTimeout(() => {
+      splash.classList.add("fade-out");
+          setTimeout(() => {
+              splash.style.display = "none";
+              content.style.display = "block";
+          }, fadeDuration);
+    }, splashDuration)
 });
