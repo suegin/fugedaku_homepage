@@ -1,4 +1,6 @@
-/*ページ入場時の演出*/
+/*ーーーーーページ入場時の演出ーーーーー*/
+
+/*-----サークルロゴの配置とフェード-----*/
 #splash {
     position: fixed;
     z-index: 9999;
@@ -22,7 +24,9 @@
     0%   { opacity: 0; }
     100% { opacity: 1; }
 }
+/*-----------------------------------------------*/
 
+/*-----FUGEDAKU!文字のアニメーション-----*/
 .fugedaku {
     position: absolute;
     bottom: 2%;
@@ -37,25 +41,35 @@
     opacity: 0;
     transform: translateY(30px);
 
-    animation: showChar 0.5s ease forwards;
+    animation: bounceChar 2.5s ease infinite;
     animation-delay: var(--delay);
 }
 
-@keyframes showChar {
+@keyframes bounceChar {
     0%{
-        opacity: 0;
-        transform: translateY(30px);
+        opacity: 1;
+        transform: translateY(0);
     }
-    60%{
+    25%{
         opacity: 1;
         transform: translateY(-15px);
+    }
+    50%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    75%{
+        opacity: 1;
+        transform: translateY(0px);
     }
     100%{
         opacity: 1;
         transform: translateY(0); 
     }
 }
+/*-----------------------------------------------*/
 
+/*-----splashからcontentにフェード-----*/
 #splash.fade-out {
     animation: fadeOutSplash 1s ease forwards;
 }
@@ -68,8 +82,13 @@
         opacity: 0;
     }
 }
+/*-----------------------------------------------*/
 
-/*-----ここからメイン-----*/
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+/*ーーーーーここからメインーーーーー*/
+
+/*ページの背景、パターン画像をループさせて表示*/
 body {
     margin: 0;
     padding: 0;
@@ -78,32 +97,42 @@ body {
     background-position: top left;
     background-color: #ffffff;
 }
+/*-----------------------------------------------*/
 
+/*<-----ヘッダー----->*/
+
+/*-----ヘッダーの範囲指定-----*/
 .site-header {
     position: relative;
     width: 100%;
     height: 60.5vh;
     overflow: hidden;
 }
+/*-----------------------------------------------*/
 
+/*-----ヘッダーの映像配置-----*/
 .header-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 0;
 }
+/*-----------------------------------------------*/
 
+/*-----ヘッダーの映像に半透明の板を被せる-----*/
 .video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
     pointer-events: none;
     z-index: 1;
 }
+/*-----------------------------------------------*/
 
+/*-----ヘッダーにサークルロゴを配置-----*/
 .circle-icon {
     position: absolute;
     top: 50%;
@@ -114,3 +143,45 @@ body {
     z-index: 2;
     opacity: 1;
 }
+/*-----------------------------------------------*/
+
+/*<----------------------------------------------->*/
+
+/*<-----ゲームスライダー----->*/
+.game-slider {
+    height: 25vh;
+    background: #000;
+}
+
+.slider-window {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: auto;
+    transform: translateY(10px);
+    width: 100%;
+}
+
+.slider-window::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-track {
+    display: flex;
+    gap: 12px;
+}
+
+.game-card {
+    min-width: 550px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.game-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
