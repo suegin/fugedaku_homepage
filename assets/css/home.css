@@ -105,7 +105,7 @@ body {
 .site-header {
     position: relative;
     width: 100%;
-    height: 60.5vh;
+    height: 55vh;
     overflow: hidden;
 }
 /*-----------------------------------------------*/
@@ -135,7 +135,7 @@ body {
 /*-----ヘッダーにサークルロゴを配置-----*/
 .circle-icon {
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     transform: translate(-90%, -50%);
     width: 1800px;
@@ -149,29 +149,28 @@ body {
 
 /*<-----ゲームスライダー----->*/
 .game-slider {
+    position: relative;
     height: 25vh;
     background: #000;
 }
 
 .slider-window {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: auto;
+    overflow: hidden;
     transform: translateY(10px);
     width: 100%;
-}
-
-.slider-window::-webkit-scrollbar {
-    display: none;
+    height: 100%;
 }
 
 .slider-track {
     display: flex;
     gap: 12px;
+    padding: 0 calc(50vw - 275px); /* ビューポート幅の半分 - カード幅の半分 */
+    transition: transform 0.5s ease-in-out;
 }
 
 .game-card {
     min-width: 550px;
+    flex-shrink: 0;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -182,6 +181,46 @@ body {
     height: 160px;
     object-fit: cover;
     border-radius: 12px;
+}
+
+/* インジケーター（ドット） */
+.slider-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50.4%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.indicator-dot.active {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+/*<----------------------------------------------->*/
+
+/*ANDMORE*/
+.andMore {
+    position: relative;
+    height: 20vh;
+
+}
+
+.andMore-card img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
 }
 
 /*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
