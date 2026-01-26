@@ -116,7 +116,7 @@ window.addEventListener("load", () => {
     }, 100);
 
     /* ---------- 自動スライド ---------- */
-    const AUTO_SLIDE_INTERVAL = 5000; // 3秒ごと
+    const AUTO_SLIDE_INTERVAL = 3000; // 3秒ごと
     let autoSlideTimer;
 
     function nextSlide() {

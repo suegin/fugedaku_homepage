@@ -3,9 +3,48 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ふゲだく!-ホームページ</title>
+    <title>ふゲだく!-ゲーム詳細</title>
     <link rel="stylesheet" href="assets/css/games.css">
 </head>
 <body>
-    <p>ゲーム説明</p>
+    <!-- スプラッシュ画面 -->
+    <div id="game-splash">
+        <div class="splash-content">
+            <button id="close-splash" class="close-button">✕</button>
+            
+            <div class="game-details">
+                <img id="game-image" src="" alt="ゲーム画像" class="game-image">
+                
+                <div class="game-info">
+                    <h1 id="game-title" class="game-title"></h1>
+                    <p id="game-description" class="game-description"></p>
+                    
+                    <div class="game-meta">
+                        <p><strong>ジャンル:</strong> <span id="game-genre"></span></p>
+                        <p><strong>リリース日:</strong> <span id="game-release"></span></p>
+                        <p><strong>ファイルサイズ:</strong> <span id="game-size"></span></p>
+                    </div>
+                    
+                    <a id="download-button" href="#" download class="download-button">
+                        ZIPダウンロード
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ（スプラッシュを閉じた後に表示） -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <a href="home.html" class="back-link">← ホームに戻る</a>
+        </header>
+        
+        <section class="games-list">
+            <h2>すべてのゲーム</h2>
+            <!-- ここにゲーム一覧を表示 -->
+        </section>
+    </div>
+
+    <script src="assets/js/games.js"></script>
 </body>
+</html>
