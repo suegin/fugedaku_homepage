@@ -70,7 +70,7 @@ body {
 
 .close-button:hover {
     background: #cc0000;
-    transform: rotate(90deg);
+    transform: scale(1.1);
 }
 
 /* ゲーム詳細 */
@@ -144,6 +144,18 @@ body {
 /* メインコンテンツ */
 #main-content {
     padding: 40px;
+    min-height: 100vh;
+}
+
+.games-header {
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-size: 36px;
+    color: #000000;
+    margin: 20px 0;
+    text-align: center;
 }
 
 header {
@@ -162,6 +174,85 @@ header {
 
 .back-link:hover {
     background: #3442a8;
+}
+
+/* ゲーム一覧グリッド */
+.games-list {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* ゲームカード */
+.game-list-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.game-list-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(69, 82, 196, 0.3);
+}
+
+.game-list-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.game-card-content {
+    padding: 20px;
+}
+
+.game-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4552c4;
+    margin: 0 0 10px 0;
+}
+
+.game-card-genre {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.game-card-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 10px 0;
+    display: -webkit-box;
+    /* -webkit-line-clamp: ; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #999;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
 /* レスポンシブ対応 */
