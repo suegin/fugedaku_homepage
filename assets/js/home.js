@@ -1,174 +1,131 @@
 window.addEventListener("load", () => {
 
     /* ============================
+       カーソル
+       ============================ */
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", e => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top  = e.clientY + "px";
+    });
+    document.querySelectorAll("a, button").forEach(el => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+    });
+
+    /* ============================
        スプラッシュ画面処理
        ============================ */
-
-    const splash = document.getElementById("splash");
+    const splash  = document.getElementById("splash");
     const content = document.getElementById("content");
 
-    const SPLASH_DURATION = 3000; // 表示時間
-    const FADE_DURATION = 1000;   // フェード時間
+    const SPLASH_DURATION = 3000;
+    const FADE_DURATION   = 800;
+    let isSplashFinished  = false;
 
-    let isSplashFinished = false;
-
-    /* スプラッシュ終了処理（共通化） */
     function finishSplash() {
         if (isSplashFinished) return;
-
         isSplashFinished = true;
-
-        /* フェードアウト開始 */
         splash.classList.add("fade-out");
-
-        /* フェード完了後に非表示 */
         setTimeout(() => {
-            splash.style.display = "none";
+            splash.style.display  = "none";
             content.style.display = "block";
         }, FADE_DURATION);
     }
 
-    /* 時間経過で自動終了 */
-    setTimeout(finishSplash, SPLASH_DURATION);
-
-    /* クリックでスキップ */
-    splash.addEventListener("click", finishSplash);
-
+    if (sessionStorage.getItem("splashShown")) {
+        /* 2回目以降：スプラッシュをスキップ */
+        splash.style.display  = "none";
+        content.style.display = "block";
+        isSplashFinished = true;
+    } else {
+        /* 初回のみ演出を流してフラグを保存 */
+        sessionStorage.setItem("splashShown", "true");
+        setTimeout(finishSplash, SPLASH_DURATION);
+        splash.addEventListener("click", finishSplash);
+    }
 
     /* ============================
-       自動スライダー処理
+       ゲームスライダー（3枚同時表示・無限ループ）
        ============================ */
+    const track    = document.getElementById("sliderTrack");
+    const dotsWrap = document.getElementById("sliderDots");
 
-    /* スクロール表示領域 */
-    const sliderWindow = document.querySelector(".slider-window");
+    if (!track || !dotsWrap) return;
 
-    /* カードが並ぶトラック */
-    const sliderTrack = document.querySelector(".slider-track");
+    const TOTAL    = track.querySelectorAll(".game-card").length;
+    const origHTML = track.innerHTML;
 
-    /* ゲームスライダー全体 */
-    const gameSlider = document.querySelector(".game-slider");
+    /* 3セット複製して無限ループを実現 */
+    track.innerHTML = origHTML + origHTML + origHTML;
 
-    /* ---------- 初期化 ---------- */
+    /* カード幅 = ビューポート幅 ÷ 3 */
+    function cardWidth() {
+        return window.innerWidth / 3;
+    }
 
-    /* 元のカード群を保存 */
-    const originalCards = Array.from(sliderTrack.querySelectorAll(".game-card"));
-    const TOTAL_CARDS = originalCards.length;
+    let pos        = TOTAL; /* 中央セット（2セット目）から開始 */
+    let currentIdx = 0;
+    let animating  = false;
 
-    /* インジケーター（ドット）を作成 */
-    const indicatorsContainer = document.createElement("div");
-    indicatorsContainer.className = "slider-indicators";
-    
-    for (let i = 0; i < TOTAL_CARDS; i++) {
+    /* インジケータードット生成 */
+    for (let i = 0; i < TOTAL; i++) {
         const dot = document.createElement("div");
-        dot.className = "indicator-dot";
-        if (i === 0) dot.classList.add("active"); // 最初のドットをアクティブに
-        indicatorsContainer.appendChild(dot);
+        dot.className = "indicator-dot" + (i === 0 ? " active" : "");
+        dot.addEventListener("click", () => jumpTo(i));
+        dotsWrap.appendChild(dot);
     }
-    
-    gameSlider.appendChild(indicatorsContainer);
+    const dots = dotsWrap.querySelectorAll(".indicator-dot");
 
-    const indicators = indicatorsContainer.querySelectorAll(".indicator-dot");
-
-    /* 無限ループ用に3セット分用意 */
-    const originalContent = sliderTrack.innerHTML;
-    sliderTrack.innerHTML = originalContent + originalContent + originalContent;
-
-    /* 全カードを取得（複製後） */
-    const allCards = sliderTrack.querySelectorAll(".game-card");
-
-    /* カード1枚分の移動距離を計算 */
-    const CARD_WIDTH = 550; // min-width
-    const GAP = 12;
-    const CARD_DISTANCE = CARD_WIDTH + GAP;
-
-    /* 現在の実際の位置（複製を含めた絶対位置） */
-    let actualPosition = TOTAL_CARDS; // 中央セット（2セット目）の最初から開始
-
-    /* 現在のインデックス（0-4のループ） */
-    let currentIndex = 0;
-
-    /* トランジション中フラグ */
-    let isTransitioning = false;
-
-    /* ---------- スライド関数 ---------- */
-    function updateSlide(position, animate = true) {
-        const offset = -(position * CARD_DISTANCE);
-        
-        if (animate) {
-            sliderTrack.style.transition = "transform 0.5s ease-in-out";
-            isTransitioning = true;
-        } else {
-            sliderTrack.style.transition = "none";
-            isTransitioning = false;
-        }
-        
-        sliderTrack.style.transform = `translateX(${offset}px)`;
-        
-        /* インジケーターを更新 */
-        indicators.forEach((dot, i) => {
-            dot.classList.toggle("active", i === currentIndex);
-        });
+    function updateDots() {
+        dots.forEach((d, i) => d.classList.toggle("active", i === currentIdx));
     }
 
-    /* ---------- 初期位置設定（game1を中央に） ---------- */
-    setTimeout(() => {
-        updateSlide(actualPosition, false);
-    }, 100);
-
-    /* ---------- 自動スライド ---------- */
-    const AUTO_SLIDE_INTERVAL = 3000; // 3秒ごと
-    let autoSlideTimer;
-
-    function nextSlide() {
-        if (isTransitioning) return;
-        
-        /* 次のスライドに移動 */
-        actualPosition++;
-        currentIndex = (currentIndex + 1) % TOTAL_CARDS;
-        updateSlide(actualPosition, true);
+    function slide(p, animate = true) {
+        track.style.transition = animate
+            ? "transform .6s cubic-bezier(.4,0,.2,1)"
+            : "none";
+        track.style.transform  = `translateX(${-(p * cardWidth())}px)`;
+        animating = animate;
+        updateDots();
     }
 
-    function startAutoSlide() {
-        autoSlideTimer = setInterval(nextSlide, AUTO_SLIDE_INTERVAL);
+    function jumpTo(idx) {
+        if (animating) return;
+        clearInterval(autoTimer);
+        const diff = idx - currentIdx;
+        pos       += diff;
+        currentIdx = idx;
+        slide(pos);
+        restartTimer();
     }
 
-    /* 自動スライド開始 */
-    setTimeout(() => {
-        startAutoSlide();
-    }, 500);
-
-    /* ---------- インジケータークリックで手動切替 ---------- */
-    indicators.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            if (isTransitioning) return;
-            
-            /* 自動スライドを一時停止して再開 */
-            clearInterval(autoSlideTimer);
-            
-            /* 目標インデックスまでの最短距離を計算 */
-            const diff = index - currentIndex;
-            actualPosition += diff;
-            currentIndex = index;
-            
-            updateSlide(actualPosition, true);
-            startAutoSlide();
-        });
+    /* トランジション終了時：端に達したら瞬時に中央セットへ戻す */
+    track.addEventListener("transitionend", () => {
+        animating = false;
+        if (pos >= TOTAL * 2) { pos -= TOTAL; slide(pos, false); }
+        if (pos <  TOTAL)     { pos += TOTAL; slide(pos, false); }
     });
 
-    /* ---------- トランジション終了時の無限ループ処理 ---------- */
-    sliderTrack.addEventListener("transitionend", () => {
-        isTransitioning = false;
-        
-        /* 3セット目に入ったら、瞬時に2セット目（中央）に戻す */
-        if (actualPosition >= TOTAL_CARDS * 2) {
-            actualPosition = actualPosition - TOTAL_CARDS;
-            updateSlide(actualPosition, false);
-        }
-        
-        /* 1セット目に入ったら、瞬時に2セット目（中央）に戻す */
-        if (actualPosition < TOTAL_CARDS) {
-            actualPosition = actualPosition + TOTAL_CARDS;
-            updateSlide(actualPosition, false);
-        }
-    });
+    /* リサイズ時に位置を再計算 */
+    window.addEventListener("resize", () => slide(pos, false));
+
+    /* 初期位置を設定（アニメーションなし） */
+    setTimeout(() => slide(pos, false), 80);
+
+    /* 自動スライド */
+    const AUTO_INTERVAL = 3500;
+    let autoTimer;
+
+    function restartTimer() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => {
+            if (animating) return;
+            pos++;
+            currentIdx = (currentIdx + 1) % TOTAL;
+            slide(pos);
+        }, AUTO_INTERVAL);
+    }
+
+    restartTimer();
 });

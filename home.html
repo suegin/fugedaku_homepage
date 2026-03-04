@@ -5,184 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ふゲだく!-ホームページ</title>
     <link rel="stylesheet" href="assets/css/home.css">
+    <script>
+        if (sessionStorage.getItem("splashShown")) {
+            document.write('<style>#splash { display: none !important; }</style>');
+        }
+    </script>
 </head>
-
 <body>
-    <script src="assets/js/home.js"></script>
-    <div id="splash">
-        <img src="assets/img/ふゲだくロゴ2.png" alt="Circle Logo" id="splash-logo">
 
-        <div class="fugedaku">
-            <img src="assets/img/FUGEDAKU_F.png" class="char" style="--delay: 0s;">
-            <img src="assets/img/FUGEDAKU_U.png" class="char" style="--delay: 0.2s;">
-            <img src="assets/img/FUGEDAKU_G.png" class="char" style="--delay: 0.4s;">
-            <img src="assets/img/FUGEDAKU_E.png" class="char" style="--delay: 0.6s;">
-            <img src="assets/img/FUGEDAKU_D.png" class="char" style="--delay: 0.8s;">
-            <img src="assets/img/FUGEDAKU_A.png" class="char" style="--delay: 1.0s;">
-            <img src="assets/img/FUGEDAKU_K.png" class="char" style="--delay: 1.2s;">
-            <img src="assets/img/FUGEDAKU_U.png" class="char" style="--delay: 1.4s;">
-            <img src="assets/img/FUGEDAKU_!.png" class="char" style="--delay: 1.6s;">
+<!-- カーソル -->
+<div id="cursor"></div>
+
+<!-- SPLASH -->
+<div id="splash">
+    <img src="assets/img/ふゲだくロゴ2.png" id="splash-logo" alt="ふゲだく！">
+    <div class="splash-chars">
+        <img src="assets/img/FUGEDAKU_F.png" style="--d:0s">
+        <img src="assets/img/FUGEDAKU_U.png" style="--d:.2s">
+        <img src="assets/img/FUGEDAKU_G.png" style="--d:.4s">
+        <img src="assets/img/FUGEDAKU_E.png" style="--d:.6s">
+        <img src="assets/img/FUGEDAKU_D.png" style="--d:.8s">
+        <img src="assets/img/FUGEDAKU_A.png" style="--d:1s">
+        <img src="assets/img/FUGEDAKU_K.png" style="--d:1.2s">
+        <img src="assets/img/FUGEDAKU_U.png" style="--d:1.4s">
+        <img src="assets/img/FUGEDAKU_!.png" style="--d:1.6s">
+    </div>
+</div>
+
+<div id="content">
+
+    <!-- ヘッダー -->
+    <header class="site-header">
+        <video class="header-video" autoplay muted loop playsinline>
+            <source src="assets/video/20251031_井上.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="h-aka-line top"></div>
+
+        <div class="logo-block">
+            <img src="assets/img/ふゲだくロゴ2.png" class="hero-logo" alt="ふゲだく！">
         </div>
+
+        <div class="h-aka-line bottom"></div>
+        <div class="scroll-cue">
+            <span>SCROLL</span>
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- ゲームスライダー -->
+    <section class="game-slider">
+        <div class="slider-window">
+            <div class="slider-track" id="sliderTrack">
+                <a href="games.html?game=1" class="game-card">
+                    <img src="assets/img/game1.png" alt="ゲーム1 タイトル画像">
+                    <p>GAME TITLE1</p>
+                </a>
+                <a href="games.html?game=2" class="game-card">
+                    <img src="assets/img/game2.png" alt="ゲーム2 タイトル画像">
+                    <p>GAME TITLE2</p>
+                </a>
+                <a href="games.html?game=3" class="game-card">
+                    <img src="assets/img/game3.png" alt="ゲーム3 タイトル画像">
+                    <p>GAME TITLE3</p>
+                </a>
+                <a href="games.html?game=4" class="game-card">
+                    <img src="assets/img/game4.png" alt="ゲーム4 タイトル画像">
+                    <p>GAME TITLE4</p>
+                </a>
+                <a href="games.html?game=5" class="game-card">
+                    <img src="assets/img/game5.png" alt="ゲーム5 タイトル画像">
+                    <p>GAME TITLE5</p>
+                </a>
+            </div>
+        </div>
+        <div class="slider-indicators" id="sliderDots"></div>
+    </section>
+
+    <!-- MORE -->
+    <div class="more-section">
+        <a href="games.html" class="more-btn">
+            <img src="assets/img/ANDMORE.png" alt="ゲームページリンク">
+        </a>
     </div>
-    <div id="content">
-        <header class="site-header">
-            <video class="header-video"  autoplay muted loop>
-                <source src="assets/video/20251031_井上.mp4" type="video/mp4">
-                お使いのブラウザは動画に対応していません。
-            </video>
 
-            <div class="video-overlay"></div>
-
-            <img src="assets/img/ふゲだくロゴ2.png" alt="サークルアイコン" class="circle-icon">
-        </header>
-
-        <section class="game-slider">
-            <div class="slider-window">
-                <div class="slider-track">
-                    <a href="games.html?game=1" class="game-card">
-                        <img src="assets/img/game1.png" alt="ゲーム1 タイトル画像">
-                        <p>GAME TITLE1</p>
-                    </a>
-
-                    <a href="games.html?game=2" class="game-card">
-                        <img src="assets/img/game2.png" alt="ゲーム2 タイトル画像">
-                        <p>GAME TITLE2</p>
-                    </a>
-                    
-                    <a href="games.html?game=3" class="game-card">
-                        <img src="assets/img/game3.png" alt="ゲーム3 タイトル画像">
-                        <p>GAME TITLE3</p>
-                    </a>
-
-                    <a href="games.html?game=4" class="game-card">
-                        <img src="assets/img/game4.png" alt="ゲーム4 タイトル画像">
-                        <p>GAME TITLE3</p>
-                    </a>
-
-                    <a href="games.html?game=5" class="game-card">
-                        <img src="assets/img/game5.png" alt="ゲーム5 タイトル画像">
-                        <p>GAME TITLE3</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="andMore">
-            <a href="games.html" class="andMore-card">
-                <img src="assets/img/ANDMORE.png" alt="ゲームページリンク">
+    <!-- 目次タブ -->
+    <nav class="toc-section">
+        <div class="toc-tabs">
+            <a href="#section-about" class="toc-tab">
+                <img src="assets/img/ふゲだく！について_目次.png" alt="ふゲだく！について">
             </a>
-        </section>
+            <a href="#section-activities" class="toc-tab">
+                <img src="assets/img/活動内容_目次.png" alt="活動内容">
+            </a>
+            <a href="#section-achievements" class="toc-tab">
+                <img src="assets/img/実績と就職率_目次.png" alt="実績と就職率">
+            </a>
+            <a href="#section-join" class="toc-tab">
+                <img src="assets/img/入部希望の方へ_目次.png" alt="入部希望の方へ">
+            </a>
+        </div>
+    </nav>
 
-        <section class="table-of-contents">
-            <div class="toc-grid">
-                <a href="#section-about" class="toc-item">
-                    <img src="assets/img/ふゲだく！について_目次.png" alt="ふゲだく！について">
-                </a>
-                <a href="#section-activities" class="toc-item">
-                    <img src="assets/img/活動内容_目次.png" alt="活動内容">
-                </a>
-                <a href="#section-achievements" class="toc-item">
-                    <img src="assets/img/実績と就職率_目次.png" alt="実績と就職率">
-                </a>
-                <a href="#section-join" class="toc-item">
-                    <img src="assets/img/入部希望の方へ_目次.png" alt="入部希望の方へ">
-                </a>
-            </div>
-        </section>
+    <!-- 区切り -->
+    <div class="wa-divider"><div class="wa-divider-icon"></div></div>
 
-        <section id="section-about" class="content-section">
+    <!-- ふゲだく！について -->
+    <section id="section-about" class="content-section">
+        <div class="section-head">
             <img src="assets/img/ふゲだく！について.png" alt="ふゲだく！について" class="section-heading-image">
-            <div class="section-content">
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-            </div>
-        </section>
+        </div>
+        <div class="section-body">
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+        </div>
+    </section>
 
-        <section id="section-activities" class="content-section">
+    <!-- 区切り -->
+    <div class="wa-divider"><div class="wa-divider-icon"></div></div>
+
+    <!-- 活動内容 -->
+    <section id="section-activities" class="content-section">
+        <div class="section-head">
             <img src="assets/img/活動内容.png" alt="活動内容" class="section-heading-image">
-            <div class="section-content">
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-            </div>
-        </section>
+        </div>
+        <div class="section-body">
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+        </div>
+    </section>
 
-        <section id="section-achievements" class="content-section">
+    <!-- 区切り -->
+    <div class="wa-divider"><div class="wa-divider-icon"></div></div>
+
+    <!-- 実績と就職率 -->
+    <section id="section-achievements" class="content-section">
+        <div class="section-head">
             <img src="assets/img/実績と就職率.png" alt="実績と就職率" class="section-heading-image">
-            <div class="section-content">
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-            </div>
-        </section>
+        </div>
+        <div class="section-body">
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+        </div>
+    </section>
 
-        <section id="section-join" class="content-section">
+    <!-- 区切り -->
+    <div class="wa-divider"><div class="wa-divider-icon"></div></div>
+
+    <!-- 入部希望の方へ -->
+    <section id="section-join" class="content-section">
+        <div class="section-head">
             <img src="assets/img/入部希望の方へ.png" alt="入部希望の方へ" class="section-heading-image">
-            <div class="section-content">
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-                <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
-            </div>
-        </section>
+        </div>
+        <div class="section-body">
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+            <p>私たちは福岡でゲーム制作を行っているサークルです。</p>
+        </div>
+    </section>
 
-        <section class="sns-link">
-            <a href="https://x.com/fugedaku" target="_blank" class="x-icon">
-                <img src="assets/img/Xアイコン.png" alt="Xリンク">
+    <!-- 区切り -->
+    <div class="wa-divider"><div class="wa-divider-icon"></div></div>
+
+    <!-- フッター -->
+    <footer class="footer-wrap">
+        <div class="footer-grid">
+
+            <!-- マップ -->
+            <div>
+                <p class="footer-label">所在地</p>
+                <div class="map-box">
+                    <!-- Google Mapsを埋め込む場合はiframeに差し替えてください -->
+                    <span class="map-box-icon">🗾</span>
+                    <span>Google Map</span>
+                </div>
+                <p class="map-address">
+                    〒xxx-xxxx<br>
+                    福岡県福岡市○○区○○
+                </p>
+            </div>
+
+            <!-- 問い合わせ -->
+            <div>
+                <p class="footer-label">お問い合わせ</p>
+                <a href="mailto:fugedaku@example.com" class="contact-mail">
+                    ✉　fugedaku@example.com
+                </a>
+                <p class="contact-note">
+                    お問い合わせはメールにてお受けしております。<br>
+                    返信まで数日いただく場合がございます。
+                </p>
+            </div>
+
+        </div>
+
+        <!-- SNSアイコン -->
+        <div class="sns-row">
+            <a href="#" class="sns-icon-btn">
+                <div class="sns-circle yt">▶</div>
+                <span class="sns-name">YouTube</span>
             </a>
-        </section>
-    </div>
+            <a href="#" class="sns-icon-btn">
+                <div class="sns-circle ig">📷</div>
+                <span class="sns-name">Instagram</span>
+            </a>
+            <a href="https://x.com/fugedaku" target="_blank" class="sns-icon-btn">
+                <img src="assets/img/Xアイコン.png" alt="X">
+                <span class="sns-name">X</span>
+            </a>
+            <a href="https://note.com/fugedaku_47" target="_blank" class="sns-icon-btn">
+                <img src="assets/img/noteロゴ.png" alt="note">
+                <span class="sns-name">note</span>
+            </a>
+        </div>
+
+        <p class="copyright">© ふゲだく！ All Rights Reserved.</p>
+    </footer>
+
+</div><!-- /content -->
+
+<script src="assets/js/home.js"></script>
 </body>
 </html>
