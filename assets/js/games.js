@@ -7,10 +7,8 @@ const gamesData = {
         id: 1,
         title: "GAME TITLE 1",
         image: "assets/img/game1.png",
-        description: "ゲーム説明",
+        description: "ゲーム説明aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game1.zip"
     },
     2: {
@@ -19,8 +17,6 @@ const gamesData = {
         image: "assets/img/game2.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game2.zip"
     },
     3: {
@@ -29,8 +25,6 @@ const gamesData = {
         image: "assets/img/game3.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game3.zip"
     },
     4: {
@@ -39,8 +33,6 @@ const gamesData = {
         image: "assets/img/game4.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game4.zip"
     },
     5: {
@@ -49,8 +41,6 @@ const gamesData = {
         image: "assets/img/game5.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game5.zip"
     },
     6:{
@@ -59,8 +49,6 @@ const gamesData = {
         image: "assets/img/game6.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game6.zip"
     },
     7:{
@@ -69,8 +57,6 @@ const gamesData = {
         image: "assets/img/game7.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game7.zip"
     },
     8:{
@@ -79,8 +65,6 @@ const gamesData = {
         image: "assets/img/game8.png",
         description: "ゲーム説明",
         genre: "ジャンル",
-        release: "2026年1月",
-        size: "???MB",
         downloadPath: "assets/downloads/game8.zip"
     }
 };
