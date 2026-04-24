@@ -210,13 +210,13 @@ body {
 .scroll-cue span {
     font-size: 9px;
     letter-spacing: .5em;
-    color: rgba(255,255,255,.3);
+    color: rgba(255, 0, 0, 0.3);
 }
 
 .scroll-line {
     width: 1px;
     height: 48px;
-    background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.4), transparent);
     animation: lineDrop 2s ease-in-out infinite;
 }
 
